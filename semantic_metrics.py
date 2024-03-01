@@ -4,7 +4,7 @@ import tiktoken
 import openai
 
 
-def embedding_cosine_similarity(references, candidates, model = 'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'):
+def eval_cosine_similarity(references, candidates, model = 'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2'):
     """
     Calculates the cosine value (taking values ​​between 0 and 1) of the embeddings for each pair of sentences,
     with one of them as a reference and another as a candidate.
@@ -53,7 +53,7 @@ def bertscores(references, candidates, encoding = tiktoken.encoding_for_model("g
         arr.append(average)
     return arr
 
-def answer_token_recall_precision(actual_responses, generated_responses):
+def token_recall_precision(actual_responses, generated_responses):
     """
     Calculates token-level recall and precision between actual responses and generated responses.
     Recall measures the proportion of tokens in the actual response that are also found in the generated response,
@@ -98,7 +98,7 @@ def answer_token_recall_precision(actual_responses, generated_responses):
     return recalls, precisions
 
 
-def gpt_classify(questions, references, candidates, key):
+def gpt_evaluation(questions, references, candidates, key):
     """
     It is a classification of a couple of sentences according to GPT3.5. Allows classification as "Correct" or "Incorrect"
     INPUTS:
